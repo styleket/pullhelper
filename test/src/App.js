@@ -19,8 +19,12 @@ class App extends Component {
 				pulled:pulled
 			})
 		})
-		.on('pull',function(next) {
+		.on('pull',function(pulled,next) {
 			console.log('pull')
+			if(pulled < 100) {
+				next()
+				return
+			}
 			setTimeout(_=>{
 				next()
 			},2000)
@@ -33,7 +37,7 @@ class App extends Component {
 			<div className='App'>
 				<div style={{
 					background:'red',
-					height:Math.max(0,pulled)
+					height:pulled
 				}} className='pull'/>
 				<div className='rows'>
 					{range(100).map(i => {

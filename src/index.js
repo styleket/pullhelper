@@ -26,17 +26,12 @@ var start = (function(evt) {
 var end = (function(evt) {
 	var that = this
 	if(that.lock) return
-	if(that.step >= 100) {
-		that.lock = true
-		emitter.emit('pull',function() {
-			that.lock = false
-			that.touch = false
-			loop()
-		})
-	} else {
+	that.lock = true
+	emitter.emit('pull',that.step,function() {
+		that.lock = false
 		that.touch = false
 		loop()
-	}
+	})
 }).bind(exports)
 
 var move = (function(evt) {
@@ -47,7 +42,7 @@ var move = (function(evt) {
 	if(this.touch && step !== this.step) {
 		this.step = step
 		this.y = y
-		emitter.emit('step',this.step)
+		emitter.emit('step',Math.max(0,this.step))
 	}
 }).bind(exports)
 
