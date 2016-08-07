@@ -42,9 +42,9 @@ var move = (function(evt) {
 	//if(!this.touch) return
 	if(this.lock) return
 	var y = evt.touches ? evt.touches[0].clientY : evt.clientY
-	var step = Math.min(Math.max(0,this.step + y - this.y),100)
+	var step = Math.min(Math.max(0,(this.step||0) + y - this.y),100)
 	if(step > 0) evt.preventDefault()
-	if(step !== this.step) {
+	if(this.touch && step !== this.step) {
 		this.step = step
 		this.y = y
 		emitter.emit('step',this.step)
