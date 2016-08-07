@@ -1,21 +1,38 @@
-pull.js
+pullhelper.js
 ============
 
-Install:
-`npm install pull`
+Pull to reflesh navigation helper.
 
-Chunked file loader
+Install
+=======
+
+`npm install pullhelper`
+
+Usage
+=====
 
 ```javascript
-var pull = require('pull')
-pull
-.on('pull',function(next) {
+var pullhelper = require('pullhelper')
+pullhelper
+.on('step',function(step) {
+})
+.on('pull',function(step,next) {
+	if(step < 100) {
+		next()
+		return
+	}
 	//...
 	next()
 })
 .init()
 ```
 
+Demo
+====
+Demo using with react.js.  
+[https://yusukeshibata.github.io/pullhelper/](https://yusukeshibata.github.io/pullhelper/)
+
+
 License
-===
+=======
 MIT

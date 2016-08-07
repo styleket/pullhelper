@@ -1,5 +1,5 @@
 {
-  "name": "pull",
+  "name": "pullhelper",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yusukeshibata/pull.git"
+    "url": "git+https://github.com/yusukeshibata/pullhelper.git"
   },
   "keywords": [],
   "author": "Yusuke Shibata <shibata@fata.io> (https://github.com/yusukeshibata)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yusukeshibata/pull/issues"
+    "url": "https://github.com/yusukeshibata/pullhelper/issues"
   },
-  "homepage": "https://github.com/yusukeshibata/pull#readme",
+  "homepage": "https://github.com/yusukeshibata/pullhelper#readme",
   "dependencies": {
     "event-emitter": "^0.3.4"
   },
