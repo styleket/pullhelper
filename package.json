@@ -1,6 +1,6 @@
 {
   "name": "pullhelper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/yusukeshibata/pullhelper#readme",
   "dependencies": {
-    "event-emitter": "^0.3.4"
+    "event-emitter": "^0.3.4",
+    "scrollingelement": "^1.5.1"
   },
   "devDependencies": {}
 }
