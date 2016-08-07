@@ -1,6 +1,6 @@
 var EventEmitter = require('event-emitter')
 var emitter = new EventEmitter()
-import 'scrollingelement'
+require('scrollingelement')
 
 var exports = {
 	y:0,
