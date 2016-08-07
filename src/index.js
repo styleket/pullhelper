@@ -19,7 +19,8 @@ var loop = (function() {
 var start = (function(evt) {
 	if(this.lock) return
 	this.y = evt.touches ? evt.touches[0].clientY : evt.clientY
-	if(document.scrollingElement.scrollTop !== 0) return
+	//if(document.scrollingElement.scrollTop !== 0) return
+	this.step = -document.scrollingElement.scrollTop
 	this.touch = true
 }).bind(exports)
 
