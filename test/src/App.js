@@ -6,7 +6,9 @@ import pull from '../../src/index.js'
 class App extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			pulled:0
+		}
 	}
 	componentDidMount() {
 		let that= this
@@ -31,7 +33,7 @@ class App extends Component {
 			<div className='App'>
 				<div style={{
 					background:'red',
-					height:pulled
+					height:Math.max(0,pulled)
 				}} className='pull'/>
 				<div className='rows'>
 					{range(100).map(i => {

@@ -19,7 +19,6 @@ var loop = (function() {
 var start = (function(evt) {
 	if(this.lock) return
 	this.y = evt.touches ? evt.touches[0].clientY : evt.clientY
-	//if(document.scrollingElement.scrollTop !== 0) return
 	this.step = -document.scrollingElement.scrollTop
 	this.touch = true
 }).bind(exports)
@@ -43,7 +42,7 @@ var end = (function(evt) {
 var move = (function(evt) {
 	if(this.lock) return
 	var y = evt.touches ? evt.touches[0].clientY : evt.clientY
-	var step = this.touch ? Math.min(Math.max(0,this.step + y - this.y),100) : 0
+	var step = this.touch ? this.step + y - this.y : 0
 	if(step > 0) evt.preventDefault()
 	if(this.touch && step !== this.step) {
 		this.step = step
