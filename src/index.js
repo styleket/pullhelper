@@ -60,13 +60,22 @@ exports.on = function(type,listener) {
 	emitter.on(type,listener)
 	return exports
 }
-exports.init = function() {
+exports.load = function() {
 	document.body.addEventListener('touchstart',start)
 	document.body.addEventListener('touchmove',move)
 	document.body.addEventListener('touchend',end)
 	document.body.addEventListener('mousedown',start)
 	document.body.addEventListener('mousemove',move)
 	document.body.addEventListener('mouseup',end)
+	return exports
+}
+exports.unload = function() {
+	document.body.removeEventListener('touchstart',start)
+	document.body.removeEventListener('touchmove',move)
+	document.body.removeEventListener('touchend',end)
+	document.body.removeEventListener('mousedown',start)
+	document.body.removeEventListener('mousemove',move)
+	document.body.removeEventListener('mouseup',end)
 	return exports
 }
 

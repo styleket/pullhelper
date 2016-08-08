@@ -23,7 +23,7 @@ class App extends Component {
 			console.log('pull')
 			next()
 		})
-		.init()
+		.load()
 	}
 	render() {
 		let { pulled } = this.state

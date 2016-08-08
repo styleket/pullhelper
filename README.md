@@ -24,7 +24,10 @@ pullhelper
 	//...
 	next()
 })
-.init()
+.load()
+
+// unload
+pullhelper.unload()
 ```
 
 Demo
