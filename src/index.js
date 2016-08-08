@@ -1,5 +1,6 @@
 var EventEmitter = require('event-emitter')
 var emitter = new EventEmitter()
+require('scrollingelement')
 
 var exports = {
 	y:0,
@@ -10,22 +11,28 @@ var exports = {
 
 var loop = (function() {
 	if(!this.touch && this.step > 0) {
-		this.step = Math.floor(this.step/2)
+		this.step = Math.floor(this.step - Math.min(10,this.step/2))
 		emitter.emit('step',this.step)
 		window.requestAnimationFrame(loop)
 	}
 }).bind(exports)
 
 var start = (function(evt) {
-	if(this.lock) return
+	if(this.lock) {
+		evt.preventDefault()
+		return
+	}
 	this.y = evt.touches ? evt.touches[0].clientY : evt.clientY
 	this.step = -document.scrollingElement.scrollTop
 	this.touch = true
 }).bind(exports)
 
 var end = (function(evt) {
+	if(this.lock) {
+		evt.preventDefault()
+		return
+	}
 	var that = this
-	if(that.lock) return
 	that.lock = true
 	emitter.emit('pull',that.step,function() {
 		that.lock = false
@@ -35,7 +42,10 @@ var end = (function(evt) {
 }).bind(exports)
 
 var move = (function(evt) {
-	if(this.lock) return
+	if(this.lock) {
+		evt.preventDefault()
+		return
+	}
 	var y = evt.touches ? evt.touches[0].clientY : evt.clientY
 	var step = this.touch ? this.step + y - this.y : 0
 	if(step > 0) evt.preventDefault()

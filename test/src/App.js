@@ -21,13 +21,7 @@ class App extends Component {
 		})
 		.on('pull',function(pulled,next) {
 			console.log('pull')
-			if(pulled < 100) {
-				next()
-				return
-			}
-			setTimeout(_=>{
-				next()
-			},2000)
+			next()
 		})
 		.init()
 	}
