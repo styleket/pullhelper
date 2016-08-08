@@ -1,7 +1,7 @@
 {
   "name": "pullhelper",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.5",
+  "description": "pull to refresh navigation helper",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/yusukeshibata/pullhelper.git"
   },
-  "keywords": [],
+  "keywords": [
+    "pull",
+    "refresh",
+    "helper"
+  ],
   "author": "Yusuke Shibata <shibata@fata.io> (https://github.com/yusukeshibata)",
   "license": "MIT",
   "bugs": {

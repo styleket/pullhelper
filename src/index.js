@@ -25,6 +25,7 @@ var start = (function(evt) {
 	this.y = evt.touches ? evt.touches[0].clientY : evt.clientY
 	this.step = -document.scrollingElement.scrollTop
 	this.touch = true
+	emitter.emit('start')
 }).bind(exports)
 
 var end = (function(evt) {
