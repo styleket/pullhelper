@@ -1,4 +1,5 @@
 var EventEmitter = require('event-emitter')
+var allOff = require('event-emitter/all-off')
 var emitter = new EventEmitter()
 require('scrollingelement')
 
@@ -76,7 +77,7 @@ exports.load = function() {
 	return exports
 }
 exports.unload = function() {
-	emitter.allOff()
+	allOff(emitter)
 	document.body.removeEventListener('touchstart',start)
 	document.body.removeEventListener('touchmove',move)
 	document.body.removeEventListener('touchend',end)
