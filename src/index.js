@@ -76,7 +76,7 @@ exports.load = function() {
 	return exports
 }
 exports.unload = function() {
-	emitter.removeAllListeners()
+	emitter.allOff()
 	document.body.removeEventListener('touchstart',start)
 	document.body.removeEventListener('touchmove',move)
 	document.body.removeEventListener('touchend',end)
