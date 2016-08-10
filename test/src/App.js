@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { range } from 'lodash'
-import pull from '../../src/index.js'
+import pullhelper from '../../src/index.js'
 
 class App extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class App extends Component {
 	}
 	componentDidMount() {
 		let that= this
-		pull
+		pullhelper
 		.on('step',function(pulled) {
 			console.log('pulled:',pulled)
 			that.setState({
@@ -26,7 +26,7 @@ class App extends Component {
 		.load()
 	}
 	render() {
-		let { pulled } = this.state
+		let { disabled,pulled } = this.state
 		return (
 			<div className='App'>
 				<div style={{
@@ -40,6 +40,16 @@ class App extends Component {
 						)
 					})}
 				</div>
+				<button onClick={_=>{
+					if(pullhelper.isPaused()) {
+						pullhelper.resume()
+					} else {
+						pullhelper.pause()
+					}
+					this.setState({
+						disabled:pullhelper.isPaused()
+					})
+				}}>Toggle:{disabled ? 'disabled' : 'enabled'}</button>
 			</div>
 		)
 	}

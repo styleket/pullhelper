@@ -8,7 +8,8 @@ var exports = {
 	cnt:0,
 	step:0,
 	touch:false,
-	lock:false
+	lock:false,
+	paused:false
 }
 
 var loop = (function() {
@@ -20,6 +21,7 @@ var loop = (function() {
 }).bind(exports)
 
 var start = (function(evt) {
+	if(this.paused) return
 	if(this.lock) {
 		evt.preventDefault()
 		return
@@ -31,6 +33,7 @@ var start = (function(evt) {
 }).bind(exports)
 
 var end = (function(evt) {
+	if(this.paused) return
 	if(this.lock) {
 		evt.preventDefault()
 		return
@@ -45,6 +48,7 @@ var end = (function(evt) {
 }).bind(exports)
 
 var move = (function(evt) {
+	if(this.paused) return
 	if(this.lock) {
 		evt.preventDefault()
 		return
@@ -67,6 +71,21 @@ exports.on = function(type,listener) {
 	emitter.on(type,listener)
 	return exports
 }
+
+exports.isPaused = (function() {
+	return this.paused
+}).bind(exports)
+
+exports.pause = (function() {
+	this.paused = true
+	return this
+}).bind(exports)
+
+exports.resume = (function() {
+	this.paused = false
+	return this
+}).bind(exports)
+
 exports.load = function() {
 	document.body.addEventListener('touchstart',start)
 	document.body.addEventListener('touchmove',move)

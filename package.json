@@ -1,6 +1,6 @@
 {
   "name": "pullhelper",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "pull to refresh navigation helper",
   "main": "src/index.js",
   "scripts": {
