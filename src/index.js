@@ -13,10 +13,13 @@ var exports = {
 }
 
 var loop = (function() {
-	if(!this.touch && this.step > 0) {
-		this.step = Math.floor(this.step - Math.min(10,this.step/2))
-		emitter.emit('step',this.step)
-		window.requestAnimationFrame(loop)
+	var that = this
+	if(!that.touch && that.step > 0) {
+		emitter.emit('step',that.step)
+		emitter.emit('stepback',that.step,function(nextStep) {
+			that.step = nextStep
+			window.requestAnimationFrame(loop)
+		})
 	}
 }).bind(exports)
 
@@ -67,7 +70,22 @@ var move = (function(evt) {
 	}
 }).bind(exports)
 
+var defaultHandler = {}
+defaultHandler['pull'] = (function(next) {
+	next()
+}).bind(exports)
+defaultHandler['stepback'] = (function(step,next) {
+	var nextStep = Math.floor(step - Math.min(10,step/2))
+	next(nextStep)
+}).bind(exports)
+
+emitter.on('pull',defaultHandler['pull'])
+emitter.on('stepback',defaultHandler['stepback'])
+
 exports.on = function(type,listener) {
+	if(defaultHandler[type]) {
+		emitter.off(type,defaultHandler[type])
+	}
 	emitter.on(type,listener)
 	return exports
 }

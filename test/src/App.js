@@ -13,6 +13,10 @@ class App extends Component {
 	componentDidMount() {
 		let that= this
 		pullhelper
+		.on('stepback',function(step,next) {
+			let nextStep = step - Math.min(step/3,20)
+			next(nextStep)
+		})
 		.on('step',function(pulled) {
 			console.log('pulled:',pulled)
 			that.setState({
