@@ -14,7 +14,7 @@ class App extends Component {
 		let that= this
 		pullhelper
 		.on('stepback',function(step,next) {
-			let nextStep = step - Math.min(step/3,20)
+			let nextStep = Math.floor(step - Math.min(step/3,20))
 			next(nextStep)
 		})
 		.on('step',function(pulled) {

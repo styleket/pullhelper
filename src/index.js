@@ -15,9 +15,9 @@ var exports = {
 var loop = (function() {
 	var that = this
 	if(!that.touch && that.step > 0) {
-		emitter.emit('step',that.step)
 		emitter.emit('stepback',that.step,function(nextStep) {
 			that.step = nextStep
+			emitter.emit('step',that.step)
 			window.requestAnimationFrame(loop)
 		})
 	}
@@ -110,6 +110,7 @@ exports.load = function() {
 	document.body.addEventListener('touchend',end)
 	document.body.addEventListener('mousedown',start)
 	document.body.addEventListener('mousemove',move)
+	document.body.addEventListener('mouseleave',end)
 	document.body.addEventListener('mouseup',end)
 	return exports
 }
@@ -120,6 +121,7 @@ exports.unload = function() {
 	document.body.removeEventListener('touchend',end)
 	document.body.removeEventListener('mousedown',start)
 	document.body.removeEventListener('mousemove',move)
+	document.body.removeEventListener('mouseleave',end)
 	document.body.removeEventListener('mouseup',end)
 	return exports
 }
