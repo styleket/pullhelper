@@ -1,6 +1,8 @@
 pullhelper.js
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/styleket/pullhelper.svg)](https://greenkeeper.io/)
+
 Pull to reflesh navigation helper.
 
 Install
